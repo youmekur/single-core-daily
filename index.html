@@ -446,7 +446,7 @@
     <div class="progress" role="progressbar" aria-label="今日任务进度" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div id="progress"></div></div>
 
     <div class="focus-ribbon">
-      <div class="focus-side"><span class="focus-no">01 <small>/ SINGLE CORE</small></span><span id="focusType">下一项 · 本科学习</span></div>
+      <div class="focus-side"><span class="focus-no"><span id="focusStep">01</span> <small>/ SINGLE CORE</small></span><span id="focusType">下一项 · 本科学习</span></div>
       <div class="focus-content"><div class="focus-name" id="focusTask">基础工程</div><div class="focus-hint" id="focusHint">完成本轮学习，再推进下一项</div></div>
       <div class="focus-right"><div class="focus-score"><strong id="ratio">0/7</strong><span>今日完成</span></div><div id="focusSegments" class="focus-segments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
     </div>
@@ -613,6 +613,7 @@
     const done=TASKS.filter(t=>!t.optional&&day.tasks[t.key]).length;const total=TASKS.filter(t=>!t.optional).length;
     $('ratio').textContent=done+'/'+total;$('progress').style.width=(100*done/total)+'%';
     const focusNext=TASKS.find(t=>!t.optional&&!day.tasks[t.key]);
+    $('focusStep').textContent=String(focusNext?TASKS.filter(t=>!t.optional).findIndex(t=>t.key===focusNext.key)+1:7).padStart(2,'0');
     const focusSection={study:'学习',projects:'项目推进',close:'今日收尾'};
     $('focusType').textContent=focusNext?'下一项 · '+focusSection[focusNext.section]:'本日任务 · 全部完成';
     $('focusTask').textContent=focusNext?(focusNext.key==='undergrad'?COURSES[day.courseIndex]:focusNext.name):'今日任务已完成';
