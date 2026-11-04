@@ -112,6 +112,8 @@
     </div>
     <div class="stats-subtitle">专项统计</div>
     <div class="metric-bars" id="statsSpecial"></div>
+    <div class="stats-subtitle">主攻项目分布 <em>仅统计勾选完成的研发任务</em></div>
+    <div class="metric-bars" id="statsProjects"></div>
     <div class="stats-subtitle">近期可验收产出 <em>仅展示主动填写的记录</em></div>
     <div class="history-list" id="statsOutputs"></div>
     <div class="analytics-footer"><button type="button" class="btn" id="exportCSV">导出 CSV 统计明细</button></div>
@@ -277,6 +279,15 @@
       {label:'研发任务',value:projects},
       {label:'产出记录',value:outputs.length}
     ],Math.max(1,recorded),n=>n+' 次');
+
+    const projectsByName=new Map();
+    data.filter(d=>d.tasks?.project).forEach(d=>{
+      const name=(typeof d.projectName==='string'&&d.projectName.trim())?d.projectName.trim():'未命名项目';
+      projectsByName.set(name,(projectsByName.get(name)||0)+1);
+    });
+    const projectRows=[...projectsByName.entries()].sort((a,b)=>b[1]-a[1]).slice(0,8).map(([label,value])=>({label,value}));
+    if(projectRows.length)bars($('statsProjects'),projectRows,Math.max(...projectRows.map(r=>r.value)),n=>n+' 次');
+    else $('statsProjects').replaceChildren(make('p','stats-note','暂时没有按项目命名的研发任务完成记录。'));
     const list=$('statsOutputs');list.replaceChildren();
     if(!outputs.length){list.append(make('p','stats-note','本时间段还没有填写可验收产出。'))}
     else outputs.slice(-5).reverse().forEach(d=>{
