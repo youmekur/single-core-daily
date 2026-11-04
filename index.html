@@ -328,6 +328,13 @@
       .time-launch{flex-wrap:wrap}
     }
 
+
+    @media(min-width:900px) and (orientation:landscape){
+      .today-grid{align-items:start;align-content:start}
+      .today-left>.card{height:auto}
+      .today-right{grid-template-rows:auto auto auto;align-content:start}
+      .today-right>.card:first-child{min-height:auto}
+    }
   </style>
 </head>
 
