@@ -81,6 +81,17 @@
   <section class="card"><div class="section-title"><h2>02 · 项目推进</h2><div class="meta">只主攻一个项目</div></div><div class="checks" id="projects"></div>
     <div class="fieldrow"><label for="projectName">今日项目</label><input id="projectName" maxlength="100" placeholder="例如：洪荒幸存者 · M1 原型" autocomplete="off"></div>
 
+
+    <p class="fieldtitle">本日可验收产出（可选）</p><textarea class="capture" id="output" placeholder="一句话写下今天真正做成的事……" maxlength="1000"></textarea>
+  </section>
+  <section class="card"><div class="section-title"><h2>03 · 今日收尾</h2><div class="meta">结束一天，而非继续规划</div></div><div class="checks" id="close"></div></section>
+
+  <section class="card" id="analytics" aria-labelledby="analyticsHeading">
+    <div class="analytics-toolbar"><div class="section-title" style="margin:0"><h2 id="analyticsHeading">04 · 完成统计</h2></div>
+      <label class="small-label" for="statsScope">统计范围
+        <select id="statsScope"><option value="7">近 7 天</option><option value="30" selected>近 30 天</option><option value="90">近 90 天</option><option value="all">全部记录</option></select>
+      </label>
+    </div>
     <details class="time-details"><summary>可选：记录今日学习 / 项目时长（分钟）</summary><p class="stats-note">只在需要时填写，留空不等于学习了 0 分钟；无需开启计时器。</p>
       <div class="minutes-fields">
       <label class="minute-field">本科 <input id="minutes-undergrad" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="本科分钟"></label>
@@ -92,16 +103,6 @@
       <label class="minute-field">研发 <input id="minutes-project" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="研发分钟"></label>
       </div>
     </details>
-    <p class="fieldtitle">本日可验收产出（可选）</p><textarea class="capture" id="output" placeholder="一句话写下今天真正做成的事……" maxlength="1000"></textarea>
-  </section>
-  <section class="card"><div class="section-title"><h2>03 · 今日收尾</h2><div class="meta">结束一天，而非继续规划</div></div><div class="checks" id="close"></div></section>
-
-  <section class="card" id="analytics" aria-labelledby="analyticsHeading">
-    <div class="analytics-toolbar"><div class="section-title" style="margin:0"><h2 id="analyticsHeading">04 · 完成统计</h2></div>
-      <label class="small-label" for="statsScope">统计范围
-        <select id="statsScope"><option value="7">近 7 天</option><option value="30" selected>近 30 天</option><option value="90">近 90 天</option><option value="all">全部记录</option></select>
-      </label>
-    </div>
     <div class="kpi-grid" id="statKpis" aria-live="polite"></div>
     <p class="stats-note" id="statsRangeNote"></p>
     <div class="stats-subtitle">每日完成趋势 <em>每天 7 项固定任务 · 不含弹性 408</em></div>
