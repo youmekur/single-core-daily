@@ -27,6 +27,42 @@
     .capture{width:100%;border:1px solid #e6ece9;border-radius:10px;resize:vertical;min-height:66px;background:#fafbfa;color:var(--ink);padding:11px 13px;font:inherit;font-size:13px;outline:none}.capture:focus{border-color:#a6c9ba}.fieldtitle{font-size:12px;color:var(--muted);margin:14px 0 9px}
     .summary{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;padding:14px 4px 0}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.btn{border:1px solid #dbe2e0;background:white;padding:10px 13px;border-radius:11px;color:#42534d;font:inherit;font-size:12px;cursor:pointer}.btn:hover{background:var(--faint)}.btn.danger{color:#9d534e}
     .foot-note{margin:18px 3px;color:#88948e;font-size:12px;line-height:1.7}.last{font-size:12px;color:var(--muted);margin-top:12px}.hidden{display:none}.no-js{margin:12px 0;background:#fff5df;padding:8px;border-radius:10px}
+
+    /* Dashboard v1.1 */
+    .analytics-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .analytics-toolbar select{color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font:inherit;font-size:13px}
+    .stats-note{font-size:12px;color:var(--muted);line-height:1.65;margin:11px 0}
+    .kpi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:17px 0}
+    .kpi{background:var(--faint);border:1px solid var(--line);border-radius:12px;padding:14px 12px}
+    .kpi strong{display:block;font-size:24px;letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1.35}
+    .kpi span{font-size:11px;color:var(--muted)}
+    .stats-subtitle{font-size:14px;font-weight:650;margin:22px 0 10px;display:flex;justify-content:space-between;gap:8px}
+    .stats-subtitle em{font-style:normal;font-size:11px;color:var(--muted);font-weight:400}
+    .mini-chart{display:grid;grid-template-columns:repeat(var(--chart-columns,7),minmax(0,1fr));gap:5px;align-items:end;min-height:116px;margin-top:10px}
+    .mini-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+    .mini-bar-bg{height:83px;background:var(--faint);border-radius:6px 6px 3px 3px;overflow:hidden;display:flex;align-items:end;width:100%;max-width:35px}
+    .mini-bar{background:var(--accent);border-radius:5px 5px 0 0;width:100%;min-height:0}
+    .mini-label{font-size:10px;color:var(--muted);white-space:nowrap}
+    .mini-day.is-missing .mini-bar-bg{opacity:.42}
+    .metric-bars{display:grid;gap:11px}
+    .metric{display:grid;grid-template-columns:minmax(95px,1.3fr) minmax(80px,2.5fr) minmax(72px,.75fr);align-items:center;gap:9px;font-size:12px}
+    .metric-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .metric-track{height:9px;border-radius:8px;background:var(--faint);overflow:hidden}
+    .metric-fill{height:100%;background:var(--accent);border-radius:8px;min-width:0}
+    .metric-val{text-align:right;white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+    .stats-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px}
+    .stat-foot{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.65}
+    .history-list{display:grid;gap:9px;margin-top:10px}
+    .history-item{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--faint)}
+    .history-item summary{font-size:12px;cursor:pointer;font-weight:580}
+    .history-item div{color:var(--muted);font-size:12px;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}
+    .minutes-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}
+    .minute-field{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px;color:var(--muted)}
+    .minute-field input{width:82px;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--paper);color:var(--ink);font:inherit}
+    details.time-details{padding:11px 0 0;margin-top:9px;border-top:1px solid var(--line)}
+    details.time-details>summary{cursor:pointer;color:var(--accent);font-size:13px}
+    .analytics-footer{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    @media(max-width:560px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi strong{font-size:22px}.stats-two{grid-template-columns:1fr}.mini-chart{gap:3px}.mini-label{font-size:9px}.metric{grid-template-columns:minmax(78px,1.2fr) minmax(58px,2fr) minmax(67px,.7fr);gap:5px}}
     @media(max-width:560px){.app{padding:24px 16px 70px}.hero h1{font-size:30px}.card{padding:19px;border-radius:16px}.course-name{font-size:22px}.right-head .ratio{font-size:26px}}
     @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#141b1b;--paper:#202929;--ink:#eef2ef;--muted:#9aaba5;--line:#35423d;--accent:#8bc9b4;--accent-light:#2b4940;--faint:#293534;--shadow:none}.card{border-color:#34413d}.course{background:linear-gradient(112deg,#243c34,#25332e);border-color:#345146}.small-label,.course-note,.course-foot{color:#a4c2b5}.course-foot{border-color:#395549}.course-index{color:#b5ddca;border-color:#4b7967}.tick{background:#24312e;border-color:#64756e}.task input:checked+.tick{background:#568a79;border-color:#568a79}.task input:checked~.task-text .task-title{color:#859b90}.pill{background:#2d3c36;color:#9aafa4}.pill.highlight{color:#bbdfcf}.fieldrow input{border-color:#46594f}.capture{background:#1d2926;color:var(--ink);border-color:#40544b}.btn{background:#25312d;border-color:#42534a;color:#cee0d5}.progress{background:#36443c}.progress>div{background:#8bc9b4}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -44,9 +80,43 @@
   </section>
   <section class="card"><div class="section-title"><h2>02 · 项目推进</h2><div class="meta">只主攻一个项目</div></div><div class="checks" id="projects"></div>
     <div class="fieldrow"><label for="projectName">今日项目</label><input id="projectName" maxlength="100" placeholder="例如：洪荒幸存者 · M1 原型" autocomplete="off"></div>
+
+    <details class="time-details"><summary>可选：记录今日学习 / 项目时长（分钟）</summary><p class="stats-note">只在需要时填写，留空不等于学习了 0 分钟；无需开启计时器。</p>
+      <div class="minutes-fields">
+      <label class="minute-field">本科 <input id="minutes-undergrad" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="本科分钟"></label>
+      <label class="minute-field">数学 <input id="minutes-math" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="数学分钟"></label>
+      <label class="minute-field">AI <input id="minutes-ai" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="AI 分钟"></label>
+      <label class="minute-field">英语 <input id="minutes-english" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="英语分钟"></label>
+      <label class="minute-field">408 <input id="minutes-cs408" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="408 分钟"></label>
+      <label class="minute-field">自媒体 <input id="minutes-media" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="自媒体分钟"></label>
+      <label class="minute-field">研发 <input id="minutes-project" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="研发分钟"></label>
+      </div>
+    </details>
     <p class="fieldtitle">本日可验收产出（可选）</p><textarea class="capture" id="output" placeholder="一句话写下今天真正做成的事……" maxlength="1000"></textarea>
   </section>
   <section class="card"><div class="section-title"><h2>03 · 今日收尾</h2><div class="meta">结束一天，而非继续规划</div></div><div class="checks" id="close"></div></section>
+
+  <section class="card" id="analytics" aria-labelledby="analyticsHeading">
+    <div class="analytics-toolbar"><div class="section-title" style="margin:0"><h2 id="analyticsHeading">04 · 完成统计</h2></div>
+      <label class="small-label" for="statsScope">统计范围
+        <select id="statsScope"><option value="7">近 7 天</option><option value="30" selected>近 30 天</option><option value="90">近 90 天</option><option value="all">全部记录</option></select>
+      </label>
+    </div>
+    <div class="kpi-grid" id="statKpis" aria-live="polite"></div>
+    <p class="stats-note" id="statsRangeNote"></p>
+    <div class="stats-subtitle">每日完成趋势 <em>每天 7 项固定任务 · 不含弹性 408</em></div>
+    <div class="mini-chart" id="statsTrend" role="img" aria-label="近期任务完成数量趋势"></div>
+    <div class="stats-two">
+      <div><div class="stats-subtitle">各项任务 <em>次数 / 已记录日</em></div><div class="metric-bars" id="statsTasks"></div></div>
+      <div><div class="stats-subtitle">本科五科 <em>累计完成次数</em></div><div class="metric-bars" id="statsCourses"></div></div>
+    </div>
+    <div class="stats-subtitle">专项统计</div>
+    <div class="metric-bars" id="statsSpecial"></div>
+    <div class="stats-subtitle">近期可验收产出 <em>仅展示主动填写的记录</em></div>
+    <div class="history-list" id="statsOutputs"></div>
+    <div class="analytics-footer"><button type="button" class="btn" id="exportCSV">导出 CSV 统计明细</button></div>
+    <p class="stat-foot">口径：未打开/未记录的日期不计入任务完成率分母，但不算连续学习日；连续学习日要求本科、数学、AI、英语至少完成一项。手填时长才计时，勾选不推断分钟数。历史数据自动沿用，无需迁移。</p>
+  </section>
   <div class="summary"><span id="weekStats">最近 5 次本科完成日：408 完成 0/2</span><span id="studyStats">本科累计完成 0 次</span></div>
   <div class="controls"><button class="btn" id="export">导出数据备份</button><button class="btn" id="importBtn">导入备份</button><button class="btn danger" id="resetDay">清空今日勾选</button><input type="file" id="importFile" accept="application/json,.json" class="hidden" aria-label="选择备份文件"></div>
   <p class="foot-note">每天按 iPad 本地日期自动新建清单；本科只有勾选「完成」才进入下一科，漏学不会跳科。数据默认保存在当前设备的这个网页应用中，不会自动跨设备同步。建议定期导出备份。</p>
@@ -103,6 +173,8 @@
     const recent=completed.slice(-5);const csCount=recent.filter(k=>state.days[k]?.tasks?.cs408).length;
     $('weekStats').textContent='最近 '+recent.length+' 次本科完成日：408 '+csCount+'/2'+(recent.length>=5&&csCount<2?' · 尚未达标':'');
     $('studyStats').textContent='本科累计完成 '+state.courseCompletions+' 次';
+    MINUTE_KEYS.forEach(k=>{const field=$('minutes-'+k);if(document.activeElement!==field)field.value=(day.minutes&&day.minutes[k]!==undefined)?day.minutes[k]:''});
+    renderAnalytics();
   }
   function toggle(key,checked){setToday();if(!!day.tasks[key]===checked)return;
     if(key==='undergrad'){
@@ -125,6 +197,119 @@
     catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)setToday()});window.addEventListener('focus',setToday);
   setInterval(()=>{if(!document.hidden)setToday()},60*1000);
+
+  const FIXED=TASKS.filter(t=>!t.optional);
+  const MINUTE_KEYS=['undergrad','math','ai','english','cs408','media','project'];
+  function shiftDate(str,offset){const [y,m,d]=str.split('-').map(Number);return new Date(Date.UTC(y,m-1,d+offset)).toISOString().slice(0,10)}
+  function statDays(){
+    const scope=$('statsScope').value;
+    const first=scope==='all'?'0000-01-01':shiftDate(today,1-Number(scope));
+    return Object.keys(state.days).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d)&&d>=first&&d<=today).sort().map(date=>({date,...state.days[date]}));
+  }
+  function hasStudy(d){return ['undergrad','math','ai','english'].some(k=>!!d?.tasks?.[k])}
+  function currentStreak(){
+    const set=new Set(Object.keys(state.days).filter(k=>/^\\d{4}-\\d{2}-\\d{2}$/.test(k)&&k<=today&&hasStudy(state.days[k])));
+    let cur=0,d=set.has(today)?today:shiftDate(today,-1);
+    while(set.has(d)){cur++;d=shiftDate(d,-1)}
+    const keys=[...set].sort();let max=0,run=0,last='';
+    for(const k of keys){run=last&&shiftDate(last,1)===k?run+1:1;max=Math.max(max,run);last=k}
+    return {current:cur,longest:max};
+  }
+  function setText(node,value){node.textContent=String(value)}
+  function make(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)setText(el,text);return el}
+  function bars(node,rows,denominator,format){
+    node.replaceChildren();
+    rows.forEach(row=>{
+      const item=make('div','metric');
+      const label=make('span','metric-name',row.label);label.title=row.label;
+      const track=make('div','metric-track');track.setAttribute('role','presentation');
+      const fill=make('div','metric-fill');fill.style.width=(denominator?100*row.value/denominator:0)+'%';track.append(fill);
+      const num=make('span','metric-val',format(row.value,row));item.append(label,track,num);node.append(item);
+    });
+  }
+  function renderAnalytics(){
+    if(!day)return;
+    const data=statDays(), recorded=data.length;
+    const total=data.reduce((sum,d)=>sum+FIXED.filter(t=>d.tasks?.[t.key]).length,0);
+    const fullDays=data.filter(d=>FIXED.every(t=>d.tasks?.[t.key])).length;
+    const studyDays=data.filter(hasStudy).length;
+    const coreDone=data.filter(d=>d.tasks?.undergrad).length;
+    const rates=recorded?Math.round(100*total/(7*recorded)):0;
+    const streak=currentStreak();
+    const outputs=data.filter(d=>typeof d.output==='string'&&d.output.trim());
+    const timeRows=MINUTE_KEYS.map(k=>({key:k,total:0,records:0}));
+    data.forEach(d=>timeRows.forEach(row=>{
+      if(d.minutes&&d.minutes[row.key]!==undefined&&d.minutes[row.key]!==null&&d.minutes[row.key]!==''){
+        const n=Number(d.minutes[row.key]);
+        if(Number.isInteger(n)&&n>=0&&n<=1440){row.total+=n;row.records++}
+      }
+    }));
+    const totalMinutes=timeRows.reduce((n,r)=>n+r.total,0);
+    const minuteFields=timeRows.reduce((n,r)=>n+r.records,0);
+    const kpis=[
+      ['任务完成率',recorded?rates+'%':'—'],['有记录天数',recorded],
+      ['核心学习天数',studyDays],['7 项全完成',fullDays],
+      ['当前连续学习',streak.current+' 天'],['最长连续学习',streak.longest+' 天'],
+      ['本科完成',coreDone+' 次'],['有效项目产出',outputs.length+' 条'],
+      ['手填时长',minuteFields?(Math.round(totalMinutes/60*10)/10)+' 小时':'未录入']
+    ];
+    const box=$('statKpis');box.replaceChildren();
+    kpis.forEach(([label,val])=>{const k=make('div','kpi');k.append(make('strong','',val),make('span','',label));box.append(k)});
+    setText($('statsRangeNote'),'统计范围内：'+recorded+' 个已有记录的日期，固定任务累计 '+total+' 项；核心学习日 '+studyDays+' 天。');
+    const trendDays=$('statsScope').value==='7'?7:14;
+    const trend=$('statsTrend');trend.replaceChildren();trend.style.setProperty('--chart-columns',trendDays);
+    for(let i=trendDays-1;i>=0;i--){
+      const key=shiftDate(today,-i),d=state.days[key],count=d?FIXED.filter(t=>d.tasks?.[t.key]).length:0;
+      const container=make('div','mini-day'+(!d?' is-missing':''));container.title=key+'：'+(d?count+'/7 已完成':'未记录');
+      const column=make('div','mini-bar-bg');const b=make('div','mini-bar');b.style.height=(count*100/7)+'%';column.append(b);
+      container.append(column,make('span','mini-label',key.slice(5)));trend.append(container);
+    }
+    bars($('statsTasks'),FIXED.map(t=>({label:t.name.replace(' · 完成本次轮换学习',''),value:data.filter(d=>d.tasks?.[t.key]).length})),recorded,
+      n=>recorded?n+'/'+recorded:'—');
+    const courses=COURSES.map((label,i)=>({label,value:data.filter(d=>d.tasks?.undergrad&&d.courseIndex===i).length}));
+    bars($('statsCourses'),courses,Math.max(1,...courses.map(x=>x.value)),n=>n+' 次');
+    const cs408=data.filter(d=>d.tasks?.cs408).length;
+    const media=data.filter(d=>d.tasks?.media).length;
+    const projects=data.filter(d=>d.tasks?.project).length;
+    bars($('statsSpecial'),[
+      {label:'408 专题',value:cs408},
+      {label:'自媒体任务',value:media},
+      {label:'研发任务',value:projects},
+      {label:'产出记录',value:outputs.length}
+    ],Math.max(1,recorded),n=>n+' 次');
+    const list=$('statsOutputs');list.replaceChildren();
+    if(!outputs.length){list.append(make('p','stats-note','本时间段还没有填写可验收产出。'))}
+    else outputs.slice(-5).reverse().forEach(d=>{
+      const details=make('details','history-item');const title=make('summary','',d.date+' · '+(d.projectName||'项目记录'));
+      const content=make('div','',d.output.trim());details.append(title,content);list.append(details);
+    });
+    if(minuteFields){
+      const stat=make('p','stat-foot','时长分布（手动录入，不含未录入的任务）：'+
+        timeRows.filter(r=>r.records).map(r=>(TASKS.find(t=>t.key===r.key)?.name||r.key)+' '+r.total+' 分钟').join(' · '));
+      list.append(stat);
+    }
+  }
+  function csvQuote(v){let s=String(v??'');if(/^[=+@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+  function downloadBlob(name,mime,body){
+    const url=URL.createObjectURL(new Blob([body],{type:mime}));
+    const a=document.createElement('a');a.href=url;a.download=name;a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),6000);
+  }
+  $('statsScope').addEventListener('change',renderAnalytics);
+  $('exportCSV').addEventListener('click',()=>{
+    const header=['日期','本科轮换科目',...TASKS.map(t=>t.name),'今日项目','可验收产出',...MINUTE_KEYS.map(k=>'分钟-'+k)];
+    const records=statDays().map(d=>[d.date,COURSES[d.courseIndex]||'',
+      ...TASKS.map(t=>d.tasks?.[t.key]?'1':'0'),d.projectName||'',d.output||'',
+      ...MINUTE_KEYS.map(k=>d.minutes?.[k]??'')]);
+    const content='\\uFEFF'+[header,...records].map(row=>row.map(csvQuote).join(',')).join('\\r\\n');
+    downloadBlob('SingleCore-统计-'+today+'.csv','text/csv;charset=utf-8',content);
+  });
+  MINUTE_KEYS.forEach(k=>{$('minutes-'+k).addEventListener('input',e=>{
+    const s=e.target.value;if(!day.minutes)day.minutes={};
+    if(s==='')delete day.minutes[k];
+    else{const n=Number(s);if(!Number.isInteger(n)||n<0||n>1440)return;day.minutes[k]=n}
+    save();renderAnalytics();
+  })});
   setToday();
   if('serviceWorker' in navigator && location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
 })();
