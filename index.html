@@ -108,6 +108,10 @@
     <div class="stats-subtitle">每日完成趋势 <em>每天 7 项固定任务 · 不含弹性 408</em></div>
     <div class="mini-chart" id="statsTrend" role="img" aria-label="近期任务完成数量趋势"></div>
     <div class="stats-two">
+      <div><div class="stats-subtitle">逐周回顾 <em>最近最多 8 周 · 记录日完成率</em></div><div class="metric-bars" id="statsWeekly"></div></div>
+      <div><div class="stats-subtitle">逐月回顾 <em>最近最多 6 月 · 记录日完成率</em></div><div class="metric-bars" id="statsMonthly"></div></div>
+    </div>
+    <div class="stats-two">
       <div><div class="stats-subtitle">各项任务 <em>次数 / 已记录日</em></div><div class="metric-bars" id="statsTasks"></div></div>
       <div><div class="stats-subtitle">本科五科 <em>累计完成次数</em></div><div class="metric-bars" id="statsCourses"></div></div>
     </div>
@@ -267,6 +271,25 @@
       const column=make('div','mini-bar-bg');const b=make('div','mini-bar');b.style.height=(count*100/7)+'%';column.append(b);
       container.append(column,make('span','mini-label',key.slice(5)));trend.append(container);
     }
+
+    function weeklyStart(date){const [y,m,d]=date.split('-').map(Number),obj=new Date(Date.UTC(y,m-1,d));return shiftDate(date,-((obj.getUTCDay()+6)%7))}
+    function groupedHistory(group,maxItems){
+      const groups=new Map();
+      data.forEach(d=>{const key=group==='week'?weeklyStart(d.date):d.date.slice(0,7);
+        const rec=groups.get(key)||{recorded:0,done:0};rec.recorded++;
+        rec.done+=FIXED.filter(t=>d.tasks?.[t.key]).length;
+        groups.set(key,rec)});
+      return [...groups.entries()].sort((a,b)=>b[0].localeCompare(a[0])).slice(0,maxItems).map(([key,rec])=>({
+        label:group==='week'?key.slice(5)+' 起':key,
+        value:Math.round(100*rec.done/(rec.recorded*7)),
+        detail:rec.done+'/'+(rec.recorded*7)+' · '+Math.round(100*rec.done/(rec.recorded*7))+'%'
+      }));
+    }
+    const weekly=groupedHistory('week',8),monthly=groupedHistory('month',6);
+    if(weekly.length)bars($('statsWeekly'),weekly,100,(n,r)=>r.detail);
+    else $('statsWeekly').replaceChildren(make('p','stats-note','暂无周度记录。'));
+    if(monthly.length)bars($('statsMonthly'),monthly,100,(n,r)=>r.detail);
+    else $('statsMonthly').replaceChildren(make('p','stats-note','暂无月度记录。'));
     bars($('statsTasks'),FIXED.map(t=>({label:t.name.replace(' · 完成本次轮换学习',''),value:data.filter(d=>d.tasks?.[t.key]).length})),recorded,
       n=>recorded?n+'/'+recorded:'—');
     const courses=COURSES.map((label,i)=>({label,value:data.filter(d=>d.tasks?.undergrad&&d.courseIndex===i).length}));
