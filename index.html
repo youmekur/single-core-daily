@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f8fafb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="每日清单" />
+  <meta name="description" content="Single Core：每天勾选，完成本科任务才自动轮换下一科。" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./icon-180.png" />
+  <title>每日清单 · Single Core</title>
+  <style>
+    :root{color-scheme:light;--bg:#f6f7f8;--paper:#fff;--ink:#1f2933;--muted:#7a858e;--line:#e9ecee;--accent:#255c57;--accent-light:#eaf4f0;--faint:#f7f9f9;--shadow:0 7px 35px rgba(19,40,50,.035)}
+    *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.45}
+    .app{max-width:810px;margin:0 auto;padding:32px 24px 80px}.eyebrow{text-transform:uppercase;letter-spacing:.23em;font-size:11px;font-weight:750;color:var(--accent)}
+    .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:25px}.hero h1{font-size:34px;letter-spacing:-.07em;margin:8px 0 8px;font-weight:730}.date{color:var(--muted);font-size:14px}.right-head{font-variant-numeric:tabular-nums;text-align:right;padding-top:16px}.right-head .ratio{font-size:30px;font-weight:750;letter-spacing:-.055em}.right-head .sub{font-size:12px;color:var(--muted)}
+    .progress{height:5px;background:#e4eae7;overflow:hidden;border-radius:10px;margin:0 0 27px}.progress>div{height:100%;width:0;background:var(--accent);border-radius:10px;transition:width .28s ease}
+    .card{border:1px solid #e6e9ea;box-shadow:var(--shadow);background:var(--paper);border-radius:18px;padding:23px;margin-bottom:16px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.section-title h2{font-weight:720;letter-spacing:-.025em;font-size:18px;margin:0}.section-title .meta{font-size:12px;color:var(--muted)}
+    .course{background:linear-gradient(112deg,#edf4f0,#f5f9f6);border:1px solid #e3ece6;border-radius:14px;padding:20px 20px 17px;margin-bottom:7px;position:relative}
+    .course-top{display:flex;align-items:center;justify-content:space-between;gap:16px}.small-label{font-size:12px;color:#657971;margin-bottom:6px}.course-name{font-size:25px;font-weight:720;letter-spacing:-.035em}.course-index{font-size:12px;color:#4b7264;border:1px solid #c9dbcf;border-radius:20px;padding:5px 10px;flex-shrink:0}.course-foot{border-top:1px solid #dce8e0;margin-top:13px;padding-top:12px;font-size:12px;color:#597268;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.course-note{font-size:12px;color:#587168}
+    .checks{display:flex;flex-direction:column}.task{display:flex;align-items:center;gap:13px;min-height:59px;padding:10px 2px;cursor:pointer;touch-action:manipulation}.task+.task{border-top:1px solid var(--line)}.task input{position:absolute;opacity:0;width:1px;height:1px}.tick{height:23px;width:23px;border:1.7px solid #c5cdcd;background:white;border-radius:8px;flex-shrink:0;display:grid;place-items:center;transition:.15s ease}.tick svg{display:none}.task input:checked+.tick{background:var(--accent);border-color:var(--accent)}.task input:checked+.tick svg{display:block}.task input:focus-visible+.tick{outline:3px solid #97c9bb;outline-offset:3px}.task-text{min-width:0;display:flex;flex-direction:column;gap:2px}.task-title{font-size:15px;font-weight:570;transition:.14s ease}.task input:checked~.task-text .task-title{text-decoration:line-through;color:#82928b}.task-detail{font-size:12px;color:var(--muted)}
+    .pill{font-size:11px;padding:5px 9px;border-radius:999px;background:#f0f3f2;color:#667972;margin-left:auto;white-space:nowrap}.pill.highlight{background:var(--accent-light);color:var(--accent)}
+    .fieldrow{margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.fieldrow label{font-size:12px;color:var(--muted)}.fieldrow input{flex:1;min-width:130px;border:0;border-bottom:1px solid #dbe2df;border-radius:0;background:transparent;padding:7px 0;font-size:13px;color:var(--ink);outline:0}.fieldrow input:focus{border-color:var(--accent)}
+    .capture{width:100%;border:1px solid #e6ece9;border-radius:10px;resize:vertical;min-height:66px;background:#fafbfa;color:var(--ink);padding:11px 13px;font:inherit;font-size:13px;outline:none}.capture:focus{border-color:#a6c9ba}.fieldtitle{font-size:12px;color:var(--muted);margin:14px 0 9px}
+    .summary{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;padding:14px 4px 0}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.btn{border:1px solid #dbe2e0;background:white;padding:10px 13px;border-radius:11px;color:#42534d;font:inherit;font-size:12px;cursor:pointer}.btn:hover{background:var(--faint)}.btn.danger{color:#9d534e}
+    .foot-note{margin:18px 3px;color:#88948e;font-size:12px;line-height:1.7}.last{font-size:12px;color:var(--muted);margin-top:12px}.hidden{display:none}.no-js{margin:12px 0;background:#fff5df;padding:8px;border-radius:10px}
+    @media(max-width:560px){.app{padding:24px 16px 70px}.hero h1{font-size:30px}.card{padding:19px;border-radius:16px}.course-name{font-size:22px}.right-head .ratio{font-size:26px}}
+    @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#141b1b;--paper:#202929;--ink:#eef2ef;--muted:#9aaba5;--line:#35423d;--accent:#8bc9b4;--accent-light:#2b4940;--faint:#293534;--shadow:none}.card{border-color:#34413d}.course{background:linear-gradient(112deg,#243c34,#25332e);border-color:#345146}.small-label,.course-note,.course-foot{color:#a4c2b5}.course-foot{border-color:#395549}.course-index{color:#b5ddca;border-color:#4b7967}.tick{background:#24312e;border-color:#64756e}.task input:checked+.tick{background:#568a79;border-color:#568a79}.task input:checked~.task-text .task-title{color:#859b90}.pill{background:#2d3c36;color:#9aafa4}.pill.highlight{color:#bbdfcf}.fieldrow input{border-color:#46594f}.capture{background:#1d2926;color:var(--ink);border-color:#40544b}.btn{background:#25312d;border-color:#42534a;color:#cee0d5}.progress{background:#36443c}.progress>div{background:#8bc9b4}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="hero"><div><div class="eyebrow">SINGLE CORE · DAILY</div><h1>每日清单</h1><div class="date" id="date"></div></div><div class="right-head"><div class="ratio" id="ratio">0/7</div><div class="sub">今日完成</div></div></header>
+  <div class="progress" aria-label="今日任务进度"><div id="progress"></div></div>
+  <noscript><p class="no-js">需要启用 JavaScript 才能使用自动轮换与保存功能。</p></noscript>
+  <section class="card"><div class="section-title"><h2>01 · 本科学习</h2><div class="meta">完成后轮换</div></div>
+    <div class="course"><div class="course-top"><div><div class="small-label" id="courseCaption">今日轮换科目</div><div class="course-name" id="courseName">基础工程</div></div><span class="course-index" id="courseIndex">01 / 05</span></div>
+    <div class="course-foot"><span id="nextCourse">完成后下次：材料力学 B</span><span>未完成则保留本科科目</span></div></div>
+    <div class="checks" id="study"></div>
+  </section>
+  <section class="card"><div class="section-title"><h2>02 · 项目推进</h2><div class="meta">只主攻一个项目</div></div><div class="checks" id="projects"></div>
+    <div class="fieldrow"><label for="projectName">今日项目</label><input id="projectName" maxlength="100" placeholder="例如：洪荒幸存者 · M1 原型" autocomplete="off"></div>
+    <p class="fieldtitle">本日可验收产出（可选）</p><textarea class="capture" id="output" placeholder="一句话写下今天真正做成的事……" maxlength="1000"></textarea>
+  </section>
+  <section class="card"><div class="section-title"><h2>03 · 今日收尾</h2><div class="meta">结束一天，而非继续规划</div></div><div class="checks" id="close"></div></section>
+  <div class="summary"><span id="weekStats">最近 5 次本科完成日：408 完成 0/2</span><span id="studyStats">本科累计完成 0 次</span></div>
+  <div class="controls"><button class="btn" id="export">导出数据备份</button><button class="btn" id="importBtn">导入备份</button><button class="btn danger" id="resetDay">清空今日勾选</button><input type="file" id="importFile" accept="application/json,.json" class="hidden" aria-label="选择备份文件"></div>
+  <p class="foot-note">每天按 iPad 本地日期自动新建清单；本科只有勾选「完成」才进入下一科，漏学不会跳科。数据默认保存在当前设备的这个网页应用中，不会自动跨设备同步。建议定期导出备份。</p>
+</div>
+<script>
+(function(){
+  'use strict';
+  const KEY='single-core-daily-checklist-v1';
+  const COURSES=['基础工程','材料力学 B','画法几何与工程制图','构造地质学','地理信息系统'];
+  const TASKS=[
+    {key:'undergrad',name:'本科 · 完成本次轮换学习',desc:'理解 / 做题 / 合书复述，达到本次可验收目标',section:'study'},
+    {key:'math',name:'考研数学',desc:'独立解题、推导或隔时重做',section:'study'},
+    {key:'ai',name:'AI 理论',desc:'沿知识树推进一个节点，检验理解',section:'study'},
+    {key:'english',name:'考研英语',desc:'不背单词 · 10–15 分钟',section:'study'},
+    {key:'media',name:'《人类文化地图》',desc:'工作流建设 / 选题产出 / 可复用成果',section:'projects'},
+    {key:'project',name:'主攻研发项目',desc:'一个明确且可验收的研发进展',section:'projects'},
+    {key:'close',name:'今日收尾',desc:'记录成果与明日第一件事',section:'close'},
+    {key:'cs408',name:'408 专题（弹性）',desc:'建议每 5 次本科学习安排 2 次，不阻塞本科轮换',section:'study',optional:true}
+  ];
+  const CHECK_ICON='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19.5 6.8" stroke="#fff" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const $=id=>document.getElementById(id);
+  function localDate(d=new Date()){const n=v=>String(v).padStart(2,'0');return `${d.getFullYear()}-${n(d.getMonth()+1)}-${n(d.getDate())}`}
+  function seed(){return {version:1,coursePointer:0,courseCompletions:0,days:{}}}
+  function normalize(v){if(!v||typeof v!=='object'||v.version!==1||!v.days||typeof v.days!=='object'||Array.isArray(v.days))throw new Error('无效备份文件');v.coursePointer=Math.max(0,Math.min(4,Number(v.coursePointer)||0));v.courseCompletions=Math.max(0,Number(v.courseCompletions)||0);return v}
+  function load(){try{const raw=localStorage.getItem(KEY);return raw?normalize(JSON.parse(raw)):seed()}catch(e){alert('无法读取已有数据，页面将使用临时清单。请检查浏览器存储权限。');return seed()}}
+  let state=load();let today='';let day;
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){alert('保存失败：设备存储空间不足或禁止本地存储。请尽快导出备份。')}}
+  function prevProject(){return Object.keys(state.days).sort().reverse().map(k=>state.days[k]?.projectName).find(s=>typeof s==='string'&&s.trim())||''}
+  function setToday(){const key=localDate();if(today===key&&day)return;today=key;
+    if(!state.days[key]){state.days[key]={courseIndex:state.coursePointer,tasks:{},projectName:prevProject(),output:'',sessionNumber:state.courseCompletions+1};save()}
+    day=state.days[key];if(typeof day.courseIndex!=='number'||day.courseIndex<0||day.courseIndex>=COURSES.length)day.courseIndex=state.coursePointer;
+    if(!day.tasks||typeof day.tasks!=='object')day.tasks={};if(typeof day.sessionNumber!=='number')day.sessionNumber=state.courseCompletions+1;
+    render();
+  }
+  function render(){const dateObj=new Date(today+'T12:00:00');
+    $('date').textContent=new Intl.DateTimeFormat('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(dateObj);
+    $('courseName').textContent=COURSES[day.courseIndex];$('courseIndex').textContent=String(day.courseIndex+1).padStart(2,'0')+' / 05';
+    $('courseCaption').textContent=day.tasks.undergrad?'今日已完成 · 下次轮换已准备':'今日轮换科目';
+    $('nextCourse').textContent='完成后下次：'+COURSES[(day.courseIndex+1)%5];
+    ['study','projects','close'].forEach(id=>$(id).replaceChildren());
+    TASKS.forEach(task=>{let lab=document.createElement('label');lab.className='task';lab.htmlFor='task-'+task.key;
+      let input=document.createElement('input');input.type='checkbox';input.id='task-'+task.key;input.checked=!!day.tasks[task.key];
+      input.addEventListener('change',()=>toggle(task.key,input.checked));
+      let tick=document.createElement('span');tick.className='tick';tick.innerHTML=CHECK_ICON;
+      let text=document.createElement('span');text.className='task-text';let title=document.createElement('span');title.className='task-title';title.textContent=task.name;
+      let desc=document.createElement('span');desc.className='task-detail';desc.textContent=task.desc;text.append(title,desc);lab.append(input,tick,text);
+      if(task.optional){let pill=document.createElement('span');const due=[2,4].includes(((day.sessionNumber-1)%5)+1);pill.className='pill'+(due?' highlight':'');pill.textContent=due?'本轮建议安排':'弹性';lab.append(pill)}
+      $(task.section).appendChild(lab);
+    });
+    $('projectName').value=day.projectName||'';$('output').value=day.output||'';
+    const done=TASKS.filter(t=>!t.optional&&day.tasks[t.key]).length;const total=TASKS.filter(t=>!t.optional).length;
+    $('ratio').textContent=done+'/'+total;$('progress').style.width=(100*done/total)+'%';
+    const completed=Object.keys(state.days).sort().filter(k=>state.days[k]?.tasks?.undergrad);
+    const recent=completed.slice(-5);const csCount=recent.filter(k=>state.days[k]?.tasks?.cs408).length;
+    $('weekStats').textContent='最近 '+recent.length+' 次本科完成日：408 '+csCount+'/2'+(recent.length>=5&&csCount<2?' · 尚未达标':'');
+    $('studyStats').textContent='本科累计完成 '+state.courseCompletions+' 次';
+  }
+  function toggle(key,checked){setToday();if(!!day.tasks[key]===checked)return;
+    if(key==='undergrad'){
+      if(checked){state.coursePointer=(day.courseIndex+1)%5;state.courseCompletions+=1}
+      else{state.coursePointer=day.courseIndex;state.courseCompletions=Math.max(0,state.courseCompletions-1)}
+    }
+    day.tasks[key]=checked;save();render();
+  }
+  $('projectName').addEventListener('input',e=>{day.projectName=e.target.value;save()});
+  $('output').addEventListener('input',e=>{day.output=e.target.value;save()});
+  $('resetDay').addEventListener('click',()=>{if(!confirm('清空今天所有勾选？本科完成状态会撤销，并恢复原轮换科目；项目名称和记录保留。'))return;
+    if(day.tasks.undergrad){state.coursePointer=day.courseIndex;state.courseCompletions=Math.max(0,state.courseCompletions-1)}
+    day.tasks={};save();render()});
+  $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SingleCore-备份-'+localDate()+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)});
+  $('importBtn').addEventListener('click',()=>$('importFile').click());
+  $('importFile').addEventListener('change',async(e)=>{const file=e.target.files&&e.target.files[0];if(!file)return;
+    try{const imported=normalize(JSON.parse(await file.text()));if(!confirm('用备份覆盖本设备的全部清单记录？此操作不能撤销。'))return;
+      state=imported;today='';day=null;save();setToday();alert('已导入备份。')}
+    catch(err){alert('导入失败：'+err.message)}finally{e.target.value=''}});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)setToday()});window.addEventListener('focus',setToday);
+  setInterval(()=>{if(!document.hidden)setToday()},60*1000);
+  setToday();
+  if('serviceWorker' in navigator && location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>
