@@ -184,13 +184,157 @@
       .scope-control select{background:var(--paper);color:var(--ink);border-color:var(--line)}
     }
 
+
+    /* v1.3 · iPad landscape workspace, desktop-height constrained */
+    .time-modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:22px;background:rgba(17,32,30,.43);backdrop-filter:blur(5px)}
+    .time-modal[hidden]{display:none!important}
+    .time-dialog{width:min(590px,100%);max-height:calc(100dvh - 44px);overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:0 25px 70px rgba(17,34,30,.16)}
+    .dialog-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .dialog-top h2{font-size:22px;margin:3px 0}
+    .time-dialog .minutes-fields{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px}
+    .time-dialog .minute-field input{min-width:75px}
+    .time-launch{display:flex;align-items:center;justify-content:space-between;gap:15px}
+    .time-launch span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    .time-launch .btn{flex-shrink:0}
+    .today-grid{display:grid;gap:14px}
+    .today-grid .card{margin-bottom:14px}
+    .today-left,.today-right{min-width:0}
+    .analytics-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+    .analytics-tab{min-height:43px;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);font-size:13px;font-weight:550;cursor:pointer}
+    .analytics-tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+    .analytics-tab:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .stats-pane[hidden]{display:none!important}
+    .stats-pane{display:grid;gap:14px;padding-top:14px}
+    .stats-panel{min-width:0;border:1px solid var(--line);border-radius:10px;padding:15px}
+    .stats-panel .stats-subtitle{margin:0 0 10px}
+    .stats-panel .stats-subtitle:not(:first-child){margin-top:17px}
+    .trend-key{margin-top:12px;color:var(--muted);font-size:12px}
+    .analytics-footer{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .analytics-footer span{color:var(--muted);font-size:12px}
+    .overview-primary .kpi-grid{gap:9px}
+    .overview-primary .summary-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .overview-primary .secondary-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .overview-primary .kpi{padding:10px 12px}
+    .overview-primary .kpi strong{font-size:22px}
+    .overview-trend .mini-chart{min-height:160px}
+    .stats-pane .metric-bars{gap:8px}
+    .stats-pane .metric{font-size:12px}
+    .stats-pane .metric-track{height:7px}
+    .stats-pane .history-item{padding:9px 11px}
+    .stats-pane .history-item summary{font-size:12px}
+    @media(min-width:900px) and (orientation:landscape){
+      html,body{height:100%;overflow:hidden}
+      .app{height:100dvh;max-width:none;display:grid;grid-template-rows:auto auto minmax(0,1fr);padding:12px clamp(18px,2.2vw,36px) 13px;overflow:hidden}
+      .hero{margin:0 0 5px;min-height:58px;align-items:center}
+      .hero h1{font-size:25px;margin:1px 0}
+      .hero .date{font-size:12px}
+      .right-head{padding:0}
+      .right-head .ratio{font-size:26px}
+      .view-tabs{position:relative;top:auto;margin-bottom:0;padding:0}
+      .view-tab{min-height:43px;padding:9px}
+      .view{min-height:0;overflow:hidden}
+      #view-today{position:relative;padding-top:10px}
+      #view-today .progress{height:3px;margin:0;position:absolute;top:0;left:0;right:0}
+      .today-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:14px;height:100%;min-height:0}
+      .today-left,.today-right{min-height:0}
+      .today-left>.card{height:100%;margin:0}
+      .today-right{display:grid;grid-template-rows:minmax(0,1fr) auto auto;gap:11px}
+      .today-right .card{margin:0}
+      .today-right>.card:first-child{min-height:0}
+      .today-grid .card{padding:14px 17px;border-radius:10px}
+      .today-grid .section-title{margin-bottom:7px}
+      .today-grid .section-title h2{font-size:16px}
+      .today-grid .section-title .meta{font-size:11px}
+      .today-grid .course{padding:10px 12px;margin-bottom:3px}
+      .today-grid .course-name{font-size:20px}
+      .today-grid .small-label{font-size:11px;margin-bottom:2px}
+      .today-grid .course-foot{margin-top:6px;padding-top:6px;font-size:11px}
+      .today-grid .task{min-height:0;height:clamp(40px,6.2dvh,54px);padding:4px 2px;gap:10px}
+      .today-grid .task-title{font-size:13.5px;line-height:1.3}
+      .today-grid .task-detail{font-size:11px;line-height:1.3}
+      .today-grid .tick{height:20px;width:20px;border-radius:6px}
+      .today-grid .fieldrow{margin-top:3px}
+      .today-grid .fieldrow input{min-height:31px;padding:4px 0;font-size:12px}
+      .today-grid .fieldtitle{margin:5px 0 5px}
+      .today-grid .capture{min-height:49px;max-height:90px;padding:8px 10px;font-size:12px}
+      .today-grid .compact-card{padding:10px 15px}
+      .today-grid .time-launch h2{font-size:13px}
+      .today-grid .time-launch .btn{min-height:36px;padding:7px 12px;font-size:12px}
+      .today-grid .time-launch span{font-size:11px}
+      .today-grid .today-right>.card:nth-child(2){padding:11px 15px}
+      .today-grid .today-right>.card:nth-child(2) .section-title{margin-bottom:2px}
+      .today-grid .today-right>.card:nth-child(2) .task{height:clamp(36px,5dvh,46px)}
+      .analytics-card{height:100%;margin:0;padding:13px 18px 11px;display:grid;grid-template-rows:auto auto minmax(0,1fr);overflow:hidden}
+      .analytics-toolbar{margin-bottom:5px}
+      .analytics-toolbar h2{font-size:19px;margin:0}
+      .analytics-toolbar .eyebrow{font-size:9px}
+      .analytics-tabs{min-height:43px}
+      #analyticsData{min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto}
+      .stats-pane{min-height:0;padding-top:12px;gap:12px;overflow:hidden}
+      #stat-pane-overview{grid-template-columns:1.04fr .96fr}
+      #stat-pane-learning{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+      #stat-pane-projects{grid-template-columns:1fr 1fr}
+      .stats-panel{min-height:0;overflow:hidden;padding:12px 13px}
+      .stats-panel .stats-subtitle{margin:0 0 7px;font-size:13px}
+      .stats-panel .stats-subtitle:not(:first-child){margin-top:11px}
+      .stats-panel .stats-subtitle em{font-size:10px}
+      .overview-primary .kpi{padding:9px 10px}
+      .overview-primary .kpi strong{font-size:21px}
+      .overview-primary .kpi span{font-size:11px}
+      .overview-primary .secondary-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .overview-trend .mini-chart{min-height:165px}
+      .mini-bar-bg{height:105px}
+      .stats-pane .metric-bars{gap:5px}
+      .stats-pane .metric{font-size:11px;grid-template-columns:minmax(75px,1.2fr) minmax(24px,.8fr) auto;gap:6px}
+      .stats-pane .stats-panel{display:flex;flex-direction:column}
+      .stats-pane .metric-val{font-size:10px}
+      .stats-pane .history-list{gap:6px;margin-top:0}
+      .stats-pane .history-item{padding:7px 9px}
+      .stats-pane .history-item summary{font-size:11px}
+      .analytics-footer{margin-top:8px}
+      .analytics-footer .btn{min-height:33px;padding:5px 10px;font-size:11px}
+      .analytics-footer span{font-size:11px}
+      .empty-state{align-self:center;padding:22px 8px}
+      #view-settings{padding-top:12px;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:16px}
+      #view-settings .data-card{margin:0;padding:20px 24px}
+      #view-settings .settings-caption{align-self:start;margin:10px 0;text-align:left}
+      .data-card .settings-divider{margin:18px 0}
+    }
+    @media(min-width:900px) and (orientation:landscape) and (max-height:700px){
+      .app{padding-top:7px;padding-bottom:8px}
+      .hero{min-height:48px}
+      .view-tab{min-height:38px}
+      .today-grid{gap:10px}
+      .today-grid .card{padding:11px 13px}
+      .today-grid .task{height:39px}
+      .today-grid .course{padding:7px 10px}
+      .today-grid .course-name{font-size:18px}
+      .today-grid .course-foot{font-size:10px}
+      .today-right{gap:8px}
+      .today-grid .capture{min-height:42px;max-height:56px}
+      .today-grid .fieldrow input{min-height:27px}
+      .stats-pane .metric-bars{gap:3px}
+      .stats-panel{padding:9px 11px}
+      .overview-primary .kpi strong{font-size:18px}
+      .overview-primary .kpi{padding:6px 9px}
+    }
+    @media(max-width:899px){
+      .today-grid{display:block}
+      .today-grid .card{margin-bottom:14px}
+      .analytics-card{display:block}
+      .stats-pane{display:block}
+      .stats-panel{margin-bottom:12px}
+      .overview-primary .secondary-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .time-launch{flex-wrap:wrap}
+    }
+
   </style>
 </head>
 
 <body>
 <div class="app">
   <header class="hero">
-    <div><div class="eyebrow">SINGLE CORE <span class="version">/ v1.2</span></div><h1>每日清单</h1><div class="date" id="date"></div></div>
+    <div><div class="eyebrow">SINGLE CORE <span class="version">/ v1.3 · iPad 横屏</span></div><h1>每日清单</h1><div class="date" id="date"></div></div>
     <div class="right-head"><div class="ratio" id="ratio">0/7</div><div class="sub">今日完成</div></div>
   </header>
   <nav class="view-tabs" role="tablist" aria-label="应用页面">
@@ -199,23 +343,32 @@
     <button class="view-tab" type="button" role="tab" aria-selected="false" tabindex="-1" id="tab-settings" aria-controls="view-settings" data-view="settings">设置与数据</button>
   </nav>
   <noscript><p class="no-js">需要启用 JavaScript 才能使用清单功能。</p></noscript>
+
   <main id="view-today" class="view" role="tabpanel" aria-labelledby="tab-today">
     <div class="progress" role="progressbar" aria-label="今日任务进度" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0"><div id="progress"></div></div>
-    <section class="card"><div class="section-title"><h2>本科学习</h2><div class="meta">完成后轮换</div></div>
+    <div class="today-grid">
+      <div class="today-left"><section class="card"><div class="section-title"><h2>本科学习</h2><div class="meta">完成后轮换</div></div>
     <div class="course"><div class="course-top"><div><div class="small-label" id="courseCaption">当前轮换科目</div><div class="course-name" id="courseName">基础工程</div></div><span class="course-index" id="courseIndex">01 / 05</span></div>
     <div class="course-foot"><span id="nextCourse">完成后下次：材料力学 B</span><span>未完成不跳科</span></div></div>
     <div class="checks" id="study"></div>
-  </section>
-  <section class="card"><div class="section-title"><h2>项目推进</h2><div class="meta">一个主攻项目</div></div><div class="checks" id="projects"></div>
+  </section></div>
+      <div class="today-right">
+        <section class="card"><div class="section-title"><h2>项目推进</h2><div class="meta">一个主攻项目</div></div><div class="checks" id="projects"></div>
     <div class="fieldrow"><label for="projectName">今日项目</label><input id="projectName" maxlength="100" placeholder="例如：洪荒幸存者 · M1 原型" autocomplete="off"></div>
 
 
     <p class="fieldtitle">本日可验收产出（可选）</p><textarea class="capture" id="output" placeholder="一句话写下今天真正做成的事……" maxlength="1000"></textarea>
   </section>
-  <section class="card"><div class="section-title"><h2>今日收尾</h2><div class="meta">记录成果，确定明日第一件事</div></div><div class="checks" id="close"></div></section>
-    <section class="card compact-card"><h2 class="compact-title">可选记录</h2>
-          <details class="time-details"><summary>记录学习与项目时长（可选）</summary><p class="stats-note">只在需要时填写，留空不等于学习了 0 分钟；无需开启计时器。</p>
-      <div class="minutes-fields">
+        <section class="card"><div class="section-title"><h2>今日收尾</h2><div class="meta">记录成果，确定明日第一件事</div></div><div class="checks" id="close"></div></section>
+        <section class="card compact-card time-launch"><div><h2 class="compact-title">学习时长</h2><span>可选记录，不影响任务完成</span></div>
+        <button class="btn time-open" type="button" id="openMinutes">记录分钟数</button></section>
+      </div>
+    </div>
+    <div class="time-modal" id="timeModal" hidden>
+      <div class="time-dialog" role="dialog" aria-modal="true" aria-labelledby="timeDialogTitle">
+        <div class="dialog-top"><div><div class="eyebrow">OPTIONAL</div><h2 id="timeDialogTitle">今日时长记录</h2></div><button type="button" class="btn" id="closeMinutes" aria-label="关闭时长记录">完成</button></div>
+        <p class="stats-note">按实际分钟填写，未记录不计入时长。输入后立即保存在本机。</p>
+        <div class="minutes-fields">
       <label class="minute-field">本科 <input id="minutes-undergrad" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="本科分钟"></label>
       <label class="minute-field">数学 <input id="minutes-math" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="数学分钟"></label>
       <label class="minute-field">AI <input id="minutes-ai" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="AI 分钟"></label>
@@ -224,65 +377,67 @@
       <label class="minute-field">自媒体 <input id="minutes-media" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="自媒体分钟"></label>
       <label class="minute-field">研发 <input id="minutes-project" type="number" inputmode="numeric" min="0" max="1440" step="1" aria-label="研发分钟"></label>
       </div>
-    </details>
-    </section>
+      </div>
+    </div>
   </main>
+
   <main id="view-stats" class="view" role="tabpanel" aria-labelledby="tab-stats" hidden>
-    
     <section class="card analytics-card" id="analytics" aria-labelledby="analyticsHeading">
       <div class="analytics-toolbar">
-        <div><div class="eyebrow">ANALYTICS</div><h2 id="analyticsHeading">完成统计</h2></div>
-        <label class="scope-control" for="statsScope">范围
+        <div><div class="eyebrow">ANALYTICS / v1.3</div><h2 id="analyticsHeading">完成统计</h2></div>
+        <label class="scope-control" for="statsScope">统计范围
           <select id="statsScope" aria-label="统计时间范围">
             <option value="7">近 7 天</option><option value="30" selected>近 30 天</option>
             <option value="90">近 90 天</option><option value="all">全部记录</option>
           </select>
         </label>
       </div>
+      <nav class="analytics-tabs" role="tablist" aria-label="统计分类">
+        <button type="button" class="analytics-tab" data-pane="overview" role="tab" id="stat-tab-overview" aria-controls="stat-pane-overview" aria-selected="true" tabindex="0">概览</button>
+        <button type="button" class="analytics-tab" data-pane="learning" role="tab" id="stat-tab-learning" aria-controls="stat-pane-learning" aria-selected="false" tabindex="-1">学科学习</button>
+        <button type="button" class="analytics-tab" data-pane="projects" role="tab" id="stat-tab-projects" aria-controls="stat-pane-projects" aria-selected="false" tabindex="-1">项目成果</button>
+      </nav>
       <div class="empty-state" id="analyticsEmpty" hidden>
         <div class="empty-mark" aria-hidden="true">—</div>
         <h3>先完成一项，再看趋势</h3>
-        <p>这个时间范围内还没有完成记录。开始执行后，图表会自动生成。</p>
+        <p>当前范围还没有完成记录。完成任务后，统计将自动更新。</p>
         <button type="button" class="btn primary" id="goToday">返回今日执行</button>
       </div>
       <div id="analyticsData">
-        <div class="kpi-grid summary-kpis" id="statKpis" aria-live="polite"></div>
-        <p class="stats-note" id="statsRangeNote"></p>
-        <div class="stats-subtitle">每日完成趋势 <em id="trendSubtitle">最近 14 天 · 固定任务共 7 项</em></div>
-        <div class="mini-chart" id="statsTrend" role="img" aria-label="近期任务完成数量趋势"></div>
-        <details class="detail-panel" id="moreKpis">
-          <summary>更多指标 <span class="detail-hint">完整数据</span></summary>
-          <div class="kpi-grid secondary-kpis" id="statMoreKpis"></div>
-        </details>
-        <details class="detail-panel">
-          <summary>周度与月度回顾 <span class="detail-hint">趋势对比</span></summary>
-          <div class="stats-two">
-            <div><div class="stats-subtitle">逐周回顾 <em>最近最多 8 周</em></div><div class="metric-bars" id="statsWeekly"></div></div>
-            <div><div class="stats-subtitle">逐月回顾 <em>最近最多 6 月</em></div><div class="metric-bars" id="statsMonthly"></div></div>
+        <section class="stats-pane" id="stat-pane-overview" role="tabpanel" aria-labelledby="stat-tab-overview">
+          <div class="stats-panel overview-primary">
+            <div class="stats-subtitle">核心指标 <em>按已记录日期统计</em></div>
+            <div class="kpi-grid summary-kpis" id="statKpis" aria-live="polite"></div>
+            <div class="stats-subtitle">其他指标 <em>不推断学习时长</em></div>
+            <div class="kpi-grid secondary-kpis" id="statMoreKpis"></div>
           </div>
-        </details>
-        <details class="detail-panel">
-          <summary>各项任务与本科五科 <span class="detail-hint">完成率与轮换</span></summary>
-          <div class="stats-two">
-            <div><div class="stats-subtitle">各项任务 <em>次数 / 已记录日</em></div><div class="metric-bars" id="statsTasks"></div></div>
-            <div><div class="stats-subtitle">本科五科 <em>完成次数</em></div><div class="metric-bars" id="statsCourses"></div></div>
+          <div class="stats-panel overview-trend">
+            <div class="stats-subtitle">每日完成趋势 <em id="trendSubtitle">近 14 天</em></div>
+            <div class="mini-chart" id="statsTrend" role="img" aria-label="近期任务完成数量趋势"></div>
+            <p class="stats-note" id="statsRangeNote"></p>
+            <p class="trend-key">每日 7 项固定任务 · 弹性 408 不计入进度分母</p>
           </div>
-        </details>
-        <details class="detail-panel">
-          <summary>专项与项目分布 <span class="detail-hint">408 · 自媒体 · 研发</span></summary>
-          <div class="stats-subtitle">专项统计</div><div class="metric-bars" id="statsSpecial"></div>
-          <div class="stats-subtitle">主攻项目分布 <em>按已勾选研发任务统计</em></div>
-          <div class="metric-bars" id="statsProjects"></div>
-        </details>
-        <details class="detail-panel">
-          <summary>可验收产出记录 <span class="detail-hint">最多显示最近 5 条</span></summary>
-          <div class="history-list" id="statsOutputs"></div>
-        </details>
-        <div class="analytics-footer"><button type="button" class="btn" id="exportCSV">导出 CSV 明细</button></div>
+        </section>
+        <section class="stats-pane" id="stat-pane-learning" role="tabpanel" aria-labelledby="stat-tab-learning" hidden>
+          <div class="stats-panel"><div class="stats-subtitle">各项任务 <em>次数 / 已记录日</em></div><div class="metric-bars" id="statsTasks"></div></div>
+          <div class="stats-panel"><div class="stats-subtitle">本科五科 <em>完成次数</em></div><div class="metric-bars" id="statsCourses"></div></div>
+          <div class="stats-panel"><div class="stats-subtitle">逐周回顾 <em>最近 8 周</em></div><div class="metric-bars" id="statsWeekly"></div></div>
+          <div class="stats-panel"><div class="stats-subtitle">逐月回顾 <em>最近 6 月</em></div><div class="metric-bars" id="statsMonthly"></div></div>
+        </section>
+        <section class="stats-pane" id="stat-pane-projects" role="tabpanel" aria-labelledby="stat-tab-projects" hidden>
+          <div class="stats-panel project-metrics">
+            <div class="stats-subtitle">专项统计</div>
+            <div class="metric-bars" id="statsSpecial"></div>
+            <div class="stats-subtitle">主攻项目分布 <em>研发任务完成次数</em></div>
+            <div class="metric-bars" id="statsProjects"></div>
+          </div>
+          <div class="stats-panel project-outputs">
+            <div class="stats-subtitle">近期可验收产出 <em>最近 5 条</em></div>
+            <div class="history-list" id="statsOutputs"></div>
+          </div>
+        </section>
+        <div class="analytics-footer"><button type="button" class="btn" id="exportCSV">导出 CSV 统计明细</button><span>完整历史数据可导出查看</span></div>
       </div>
-      <details class="methodology"><summary>统计口径说明</summary>
-        <p>仅把打开并生成清单的日期计入任务完成率分母；未打开的日期不算失败，但不计为连续学习日。连续学习日以本科、数学、AI、英语任一完成为准。未填写的学习时长不按零分钟或预估时间处理。</p>
-      </details>
     </section>
   </main>
   <main id="view-settings" class="view" role="tabpanel" aria-labelledby="tab-settings" hidden>
@@ -521,6 +676,31 @@
     else{const n=Number(s);if(!Number.isInteger(n)||n<0||n>1440)return;day.minutes[k]=n}
     save();renderAnalytics();
   })});
+
+
+  const STAT_PANES=['overview','learning','projects'];
+  function showStatPane(name){
+    if(!STAT_PANES.includes(name))return;
+    STAT_PANES.forEach(p=>{
+      $('stat-pane-'+p).hidden=p!==name;
+      $('stat-tab-'+p).setAttribute('aria-selected',String(p===name));
+      $('stat-tab-'+p).tabIndex=p===name?0:-1;
+    });
+  }
+  STAT_PANES.forEach((pane,i)=>{
+    $('stat-tab-'+pane).addEventListener('click',()=>showStatPane(pane));
+    $('stat-tab-'+pane).addEventListener('keydown',e=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+      e.preventDefault();
+      const next=e.key==='Home'?0:e.key==='End'?STAT_PANES.length-1:(i+(e.key==='ArrowRight'?1:-1)+STAT_PANES.length)%STAT_PANES.length;
+      showStatPane(STAT_PANES[next]);$('stat-tab-'+STAT_PANES[next]).focus();
+    });
+  });
+  $('openMinutes').addEventListener('click',()=>{$('timeModal').hidden=false;$('closeMinutes').focus()});
+  function closeTimeModal(){$('timeModal').hidden=true;$('openMinutes').focus()}
+  $('closeMinutes').addEventListener('click',closeTimeModal);
+  $('timeModal').addEventListener('click',e=>{if(e.target===$('timeModal'))closeTimeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('timeModal').hidden)closeTimeModal()});
 
   const VIEWS=['today','stats','settings'];
   function showView(name){
