@@ -531,7 +531,7 @@
       $('tab-'+v).tabIndex=v===name?0:-1;
     });
     if(name==='stats')renderAnalytics();
-    window.scrollTo({top:0,behavior:'instant'});
+    window.scrollTo({top:0,behavior:'auto'});
   }
   VIEWS.forEach((view,i)=>{
     $('tab-'+view).addEventListener('click',()=>showView(view));
