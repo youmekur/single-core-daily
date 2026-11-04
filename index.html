@@ -204,11 +204,11 @@
   function statDays(){
     const scope=$('statsScope').value;
     const first=scope==='all'?'0000-01-01':shiftDate(today,1-Number(scope));
-    return Object.keys(state.days).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d)&&d>=first&&d<=today).sort().map(date=>({date,...state.days[date]}));
+    return Object.keys(state.days).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>=first&&d<=today).sort().map(date=>({date,...state.days[date]}));
   }
   function hasStudy(d){return ['undergrad','math','ai','english'].some(k=>!!d?.tasks?.[k])}
   function currentStreak(){
-    const set=new Set(Object.keys(state.days).filter(k=>/^\\d{4}-\\d{2}-\\d{2}$/.test(k)&&k<=today&&hasStudy(state.days[k])));
+    const set=new Set(Object.keys(state.days).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k)&&k<=today&&hasStudy(state.days[k])));
     let cur=0,d=set.has(today)?today:shiftDate(today,-1);
     while(set.has(d)){cur++;d=shiftDate(d,-1)}
     const keys=[...set].sort();let max=0,run=0,last='';
@@ -301,7 +301,7 @@
     const records=statDays().map(d=>[d.date,COURSES[d.courseIndex]||'',
       ...TASKS.map(t=>d.tasks?.[t.key]?'1':'0'),d.projectName||'',d.output||'',
       ...MINUTE_KEYS.map(k=>d.minutes?.[k]??'')]);
-    const content='\\uFEFF'+[header,...records].map(row=>row.map(csvQuote).join(',')).join('\\r\\n');
+    const content='\uFEFF'+[header,...records].map(row=>row.map(csvQuote).join(',')).join('\r\n');
     downloadBlob('SingleCore-统计-'+today+'.csv','text/csv;charset=utf-8',content);
   });
   MINUTE_KEYS.forEach(k=>{$('minutes-'+k).addEventListener('input',e=>{
